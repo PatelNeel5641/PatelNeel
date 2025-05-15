@@ -1,0 +1,93 @@
+import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import React from "react";
+import { Link } from "react-router-dom";
+
+const navItems = [
+  { name: "Home", path: "/home", active: true },
+  { name: "About", path: "/about", active: false },
+  { name: "Services", path: "/services", active: false },
+  { name: "Portfolio", path: "/portfolio", active: false },
+  { name: "Contact", path: "/contact", active: false },
+];
+
+export default function Home(): JSX.Element {
+  return (
+    <div className="bg-white flex flex-row justify-center w-full">
+      <div className="bg-white w-full max-w-[1920px] relative min-h-screen">
+        {/* Top colored strip */}
+        <div className="w-full h-12 bg-white">
+          <img className="w-full h-12" alt="Decorative header strip" src="" />
+        </div>
+
+        {/* Navigation header */}
+        <header className="w-full h-20 bg-[#e9e8e6] shadow-[0px_0px_18px_#0000001a]">
+          <div className="max-w-[1920px] h-full mx-auto flex items-center justify-between px-8 lg:px-[360px]">
+            {/* Logo/Name */}
+            <div className="[font-family:'Playfair_Display-Bold',Helvetica] font-bold text-black text-[32px] leading-[22.5px]">
+              Patel Neel
+            </div>
+
+            {/* Navigation */}
+            <NavigationMenu>
+              <NavigationMenuList className="flex gap-[50px]">
+                {navItems.map((item) => (
+                  <NavigationMenuItem key={item.name}>
+                    <Link to={item.path} className="relative p-2.5">
+                      <div
+                        className={`relative w-fit mt-[-1.00px] font-themewagon-github-io-semantic-link text-[15px] leading-[22.5px] whitespace-nowrap ${item.active ? "text-[#ff6b6b]" : "text-[#444444]"}`}
+                      >
+                        {item.name}
+                      </div>
+                      {item.active && (
+                        <div className="absolute w-[25px] h-0.5 bottom-0 left-2.5 bg-[#ff6b6b]" />
+                      )}
+                    </Link>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+        </header>
+
+        {/* Main content */}
+        <main className="flex flex-col items-start justify-center px-8 lg:px-[360px] py-16 h-[calc(100vh-128px)]">
+          <div className="max-w-[607px]">
+            {/* Headline */}
+            <h1 className="[font-family:'Playfair_Display-Bold',Helvetica] text-[#242a40] text-5xl tracking-[0] leading-[48px]">
+              <span className="font-bold leading-[52.8px]">
+                Hi, I&apos;m Neel Patel
+              </span>
+              <span className="[font-family:'Playfair_Display-Regular',Helvetica] leading-[52.8px]">
+                , <br />
+              </span>
+              <span className="font-bold leading-[57.6px]">
+                UI/UX &amp; Graphic Designer.
+              </span>
+            </h1>
+
+            {/* Tagline */}
+            <p className="mt-10 opacity-[0.87] [font-family:'Inter-Regular',Helvetica] font-normal text-black text-xl tracking-[0] leading-[30px]">
+              Designing experiences that connect brands and users.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex gap-6 mt-12">
+              <Button className="bg-[#ff6b6b] hover:bg-[#ff5252] text-white h-auto py-3 px-6 rounded">
+                My Project
+              </Button>
+
+              <Button className="bg-[#ff6b6b] hover:bg-[#ff5252] text-white h-auto py-3 px-6 rounded">
+                Contact
+              </Button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
